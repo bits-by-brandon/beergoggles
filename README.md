@@ -60,24 +60,20 @@ Task: Take data URL and set as img tag src to create image.
  
 setting img src done in js file seperate from background.js
 
+clip path
+---------------
+the clip path needs to be transformed seperately with transfrom translate
+
+clip path has issues translating beyond the initial viewer height
+
+
 Todo
 ===============
 
--(done)find out how to point browser to image file stored in extension
-
--(done)create seperate html to load img?
-
--(done)web_accessible_resources: put in manifest to make img accessible to DOM
-
--(done)create SVG clipping mask of goggles to static image
-
--(failed)on request animation frame, delete background, repaint
-
--svg does not affect position of svg clipping mask
-
--try transfrom origin for svg clip position
 
 screenshot grab
 ---------------
 
 src for the screenshot taken is stored in "dataurl"
+
+passed from content script (main.js) to extention (background.js) through chrome.runtime.sendmessage, returns the dataurl to be set as source for #background
