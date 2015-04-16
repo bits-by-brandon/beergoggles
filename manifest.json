@@ -7,9 +7,14 @@
 
    "browser_action": {
       "default_icon": "icon.png",
-      "default_title": "Beer Goggles<br>PRPLrs"
+      "default_title": "Beer Goggles by PRPLrs"
    },
-
+   
+   "content_scripts": [ {
+       "js": [ "jquery-1.11.2.min.js", "jquery.facedetection.js"],
+       "matches": [ "http://*/*", "https://*/*"]
+   }],
+   
    "background":{
       "scripts": ["background.js"],
       "persistent": false
@@ -18,13 +23,15 @@
    "web_accessible_resources": [
       "icon.png",
       "goggles.svg",
-      "gogglesClip.svg"
+      "gogglesClip.svg",
+      "people.jpg"
     ],
         
    "permissions": [
       "background",
       "activeTab",
       "https://ajax.googleapis.com/",
-      "desktopCapture" 
+      "desktopCapture"
    ]
+   
 }
