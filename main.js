@@ -27,9 +27,16 @@ function setImage(image){
 
 //passes background image into facial detection
 function detectFace(){
-   background.faceDetection({
+   $('#background').faceDetection({
         complete: function (faces) {
-            console.log(faces);
+            for(i = 0; i < faces.length; i++){
+               console.log(faces[i].x + " " + faces[i].y);
+               
+               var faceX = faces[i].x;
+               var faceY = faces[i].y;
+               
+               document.body.innerHTML += '<div class="face" style="position:fixed;background-color:#be67d8 ;height:90px;width:90px;z-index:400;left:' + faceX + 'px;top:'+ faceY +'px;">';
+            }
         }
     });
 };
