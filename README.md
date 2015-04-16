@@ -71,6 +71,13 @@ Todo
 
 -(done)create SVG clipping mask of goggles to static image
 
--repaint svg clipping mask on mouse move
-
 -(failed)on request animation frame, delete background, repaint
+
+-svg does not affect position of svg clipping mask
+
+-try transfrom origin for svg clip position
+
+screenshot grab
+---------------
+
+src for the screenshot taken is stored in "dataurl"
