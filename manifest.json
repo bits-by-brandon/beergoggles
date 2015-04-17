@@ -22,6 +22,7 @@
     
    "web_accessible_resources": [
       "icon.png",
+      "logo.svg",
       "goggles.svg",
       "gogglesClip.svg",
       "people.jpg",
