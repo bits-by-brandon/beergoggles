@@ -32,10 +32,13 @@ function detectFace(){
             for(i = 0; i < faces.length; i++){
                console.log(faces[i].x + " " + faces[i].y);
                
-               var faceX = faces[i].x;
-               var faceY = faces[i].y;
+               var face = faces[i];
+               var faceX = face.x;
+               var faceY = face.y;
+               var faceHeight = face.height;
+               var faceWidth = face.width;
                
-               document.body.innerHTML += '<div class="face" style="position:fixed;background-color:#be67d8 ;height:90px;width:90px;z-index:400;left:' + faceX + 'px;top:'+ faceY +'px;">';
+               document.body.innerHTML += '<div class="face" style="position:fixed;background-color:#be67d8 ;height:'+ faceHeight +'px;width:'+ faceWidth +'px;z-index:400;left:' + faceX + 'px;top:'+ faceY +'px;">';
             }
         }
     });
