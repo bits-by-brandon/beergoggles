@@ -1,15 +1,17 @@
 faceImage = chrome.extension.getURL("face.png");
 //logo = chrome.extension.getURL("logo.svg");
 var image;
+var loadDelay;
 var body = document.getElementsByTagName('body');
 
+// add required styles
+document.body.innerHTML += '<style>.loadin{opacity:0.95 !important}#clipPath{position:fixed}</style>'
 
 //add div and goggle img to body tag of DOM
 function loadScreen(){
-   document.body.innerHTML += '<style>.loadin{opacity:0.95 !important}</style>'
-   document.body.innerHTML += '<div id="loadback" class="" style="position:fixed; width:100vw;height:100vh;left:0px;top:0px;background-color:#fff;opacity:0;z-index:1010;transition:opacity 300ms;"><svg style="position:absolute;margin-top:-51.7665;top:50%;margin-left:-53.8705;left:50%" version="1.1" x="0px" y="0px" width="107.741px" height="103.533px" viewBox="0 0 107.741 103.533" enable-background="new 0 0 107.741 103.533" xml:space="preserve"><path fill="#231F20" d="M107.741 0v85.646l-53.871 17.888L0 85.646V0H107.741z M4.419 79.333l34.932-27.776V25.042h18.308 c4.488 0 8.3 1 11.4 2.946L98.693 4.419H4.419V79.333z M103.323 6.313L72.389 30.934c2.104 2.4 3.2 5.5 3.2 9.3 v0.21c0 5.05-1.684 8.911-5.05 11.573c-3.367 2.668-7.858 3.999-13.468 3.999h-5.893v12.205H39.351V57.027L6.523 83.1 l47.347 15.783l49.453-16.414V6.313z M59.553 35.353c-0.283 0-0.704-0.033-1.263-0.105c-0.562-0.068-1.052-0.105-1.473-0.105 h-5.682v6.944L59.553 35.353z M62.919 38.299l-10.521 8.207h4.209c4.629 0 6.944-1.894 6.944-5.682 C63.551 39.7 63.3 38.9 62.9 38.299z"/></svg></div>'
+   document.body.innerHTML += '<div id="loadback" class="" style="position:fixed; width:100vw;height:100vh;left:0px;top:0px;background-color:#fff;opacity:0;z-index:1010;transition:opacity 300ms;"><svg style="position:absolute;top:50%;left:50%;margin-top:-150px;margin-left:-40px;" version="1.1" id="Layer_1" x="0px" y="0px" width="79.837px" height="284.804px" viewBox="0 0 79.837 284.804" enable-background="new 0 0 79.837 284.804" xml:space="preserve"><g><defs><rect id="SVGID_1_" x="2.402" y="3.294" width="73.719" height="278.329"/></defs><clipPath id="SVGID_2_"><use xlink:href="#SVGID_1_"  overflow="visible"/> </clipPath> <g id="beer_fill" clip-path="url(#SVGID_2_)"> <path fill="#996E23" d="M64.17,106.081l-5.988-6.925c-2.53-3.151-4.105-7.253-4.105-11.339V44.53V22.918V17.24v-5.512V8.414 c0-1.264-0.949-2.199-2.196-2.199H27.952c-1.26,0-2.196,0.951-2.196,2.199v3.314v5.512v5.678V44.53v42.958 c0,4.102-1.576,8.188-4.104,11.339l-5.985,6.924c-5.991,7.253-9.452,16.705-9.452,26.157v13.093v4.27v80.646v18.317v28.284 c0,1.266,0.949,2.2,2.199,2.2h63.008c1.263,0,2.2-0.952,2.2-2.2v-28.284v-18.317v-80.646v-4.27v-12.765 C73.621,122.784,70.156,113.333,64.17,106.081z"/></g></g><g><path d="M33.451,178.58h8.153c2,0,3.686,0.437,5.059,1.311l13.218-10.496H17.894v33.365l15.558-12.369V178.58z"/><path d="M68.963,102.124c-0.03-0.037-0.061-0.073-0.092-0.108l-5.906-6.831c-1.675-2.124-2.674-4.871-2.674-7.369V44.53V22.918 V17.24v-5.512V8.414c0-4.718-3.693-8.414-8.41-8.414H27.953c-4.717,0-8.411,3.696-8.411,8.414v3.314v5.512v5.678V44.53v42.958 c0,2.535-0.973,5.216-2.673,7.37l-5.904,6.83c-0.031,0.035-0.061,0.071-0.09,0.106C3.963,110.161,0,121.137,0,131.908v13.093v4.27 v80.646v18.317v28.285c0,4.718,3.696,8.415,8.413,8.415h63.009c4.719,0,8.415-3.697,8.415-8.415v-28.285v-18.317v-80.646v-4.27 v-12.765C79.837,121.47,75.873,110.495,68.963,102.124z M25.756,11.728V8.414c0-1.248,0.936-2.199,2.196-2.199h23.928 c1.247,0,2.195,0.936,2.195,2.199v3.314v0.701h-28.32V11.728z M73.622,229.917v18.317v28.285c0,1.248-0.938,2.2-2.2,2.2H8.413 c-1.249,0-2.199-0.936-2.199-2.2v-28.285v-18.317v-2.146h67.408V229.917z M15.925,205.572v-38.147h47.986v38.147l-23.994,7.966 L15.925,205.572z M73.622,145.001v4.27v3.901H6.214v-3.901v-4.27v-13.093c0-9.452,3.461-18.903,9.452-26.157l5.985-6.924 c2.528-3.15,4.104-7.237,4.104-11.339V44.53V22.918v-4.275h28.32v4.275V44.53v43.287c0,4.086,1.576,8.188,4.106,11.339l5.988,6.925 c5.986,7.252,9.451,16.704,9.451,26.156V145.001z"/><path d="M41.23,183.077h-2.532v3.094l3.749-2.998c-0.126,0-0.312-0.016-0.562-0.049C41.636,183.093,41.417,183.077,41.23,183.077z"/><path d="M49.57,185.326v0.092c0,2.251-0.749,3.971-2.247,5.155c-1.5,1.188-3.501,1.782-5.999,1.782h-2.626v5.436h-5.247v-4.966 l-14.622,11.62l21.088,7.03l22.026-7.309v-33.929l-13.777,10.964C49.103,182.266,49.57,183.64,49.57,185.326z"/><path d="M44.229,185.609c0-0.5-0.095-0.876-0.281-1.127l-4.686,3.656h1.875C43.198,188.138,44.229,187.294,44.229,185.609z"/></g></svg></div>'
    var loadback = document.getElementById('loadback');
-   window.setTimeout(fadeIn, 1);
+   window.setTimeout(fadeIn, 0);
 };
 
 function fadeIn(){
@@ -17,7 +19,6 @@ function fadeIn(){
 }
 
 function fadeOut(){
-   console.log("fade out");
    loadback.classList.remove("loadin");
 }
 
@@ -35,6 +36,18 @@ function divInject(){
 loadScreen();
 
 divInject();
+
+
+//detects when user starts and stops scrolling.
+window.addEventListener('scroll', function() {
+    if(loadDelay !== null) {
+        clearTimeout(loadDelay);
+        console.log("delaying")
+    }
+    loadDelay = setTimeout(function() {
+          reload();
+    }, 600);
+}, false);
 
 //sends out a message to background.js that returns the Data URL to the screenshot
 chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
@@ -74,13 +87,17 @@ function detectFace(){
     });
 };
 
-//$('#background').css("opacity", 0);
+//clears dom and dataurl for new screenshot
+function reload(){
+
+};
+
 
 //hide cursor
 document.body.style.cursor = 'none';
 
 
-var mouse = {x:100, y:100};
+var mouse = {x:0, y:0};
 
 //mouse listener to move goggles
 document.addEventListener('mousemove', mouseListen, false);
@@ -88,13 +105,10 @@ document.addEventListener('mousemove', mouseListen, false);
 function mouseListen(e){ 
    mouse.x = e.clientX || e.pageX; 
    mouse.y = e.clientY || e.pageY;
+   mouseScroll = window.scrollY - 90
    gogglesMain.style.left = mouse.x - 300 + "px";
    gogglesMain.style.top = mouse.y - 100 + "px";
-   clipPath.setAttribute("transform", "translate("+(mouse.x -290)+","+(mouse.y - 90)+") scale(1.83,1.83)");
-   
-   
-//figuring out repaint actions
-   //background.style.webkitClipPath = "url('#svgPath1')"      
+   clipPath.setAttribute("transform", "translate("+(mouse.x -290)+","+(mouse.y + mouseScroll)+") scale(1.83,1.83)");
 }
 
 //esc key cancels most events
@@ -113,14 +127,3 @@ document.onkeydown = function goggleDisable(e){
    }
 };
 
-
-
-/*window.requestAnimationFrame(frame);
-
-function frame(){
-   document.getElementById("background").remove();
-   
-   document.body.innerHTML += '<div id="background" style="position:fixed;width:100vw;height:100vh;top:0;left:0;z-index:500;background-color:#000;opacity:0.3;-webkit-clip-path: url(#svgPath)"></div>';
-   
-   window.requestAnimationFrame(frame);
-};*/

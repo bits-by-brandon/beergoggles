@@ -6,7 +6,7 @@
   "version": "0.0.1",
 
    "browser_action": {
-      "default_icon": "icon.png",
+      "default_icon": "logo.svg",
       "default_title": "Beer Goggles by PRPLrs"
    },
    
@@ -22,7 +22,7 @@
     
    "web_accessible_resources": [
       "icon.png",
-      "logo.svg",``
+      "logo.svg",
       "goggles.svg",
       "gogglesClip.svg",
       "people.jpg",
