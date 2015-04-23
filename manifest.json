@@ -6,7 +6,7 @@
   "version": "0.0.1",
 
    "browser_action": {
-      "default_icon": "logo.svg",
+      "default_icon": "logo.png",
       "default_title": "Beer Goggles by PRPLrs"
    },
    
@@ -25,7 +25,7 @@
       "logo.svg",
       "goggles.svg",
       "gogglesClip.svg",
-      "people.jpg",
+      "logo.png",
       "face.png",
       "jquery.facedetection.min.js.map",
       "jquery-1.11.2.min.js"
