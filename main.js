@@ -115,7 +115,6 @@ function detectFace() {
                window.setTimeout(fadeOut, 1000);
             }
          }
-
       }
    });
 };
