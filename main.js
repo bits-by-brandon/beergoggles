@@ -108,7 +108,7 @@ function detectFace() {
             //var bottleLoad = (((i+1)*100/facenum)*2.8) + 3;
             //console.log(bottleLoad);
             
-            
+            faceImage = chrome.extension.getURL("face"+ Math.floor((Math.random() * 5) + 1)+ ".png");
             background.innerHTML += '<img src="'+faceImage+'" class="face" style="position:fixed;height:'+ faceHeight * 3+'px;width:'+ faceWidth * 3+'px;z-index:400;left:' + faceX + 'px;top:'+ faceY +'px;">';
                            
             if(i + 1 == faces.length){
@@ -149,7 +149,8 @@ function faceloop() {
    //creates bottle loading animation
    /*var bottleLoad = (((i + 1) * 100 / facenum) * 2.8) + 3;
    console.log(bottleLoad);*/
-   faceImage = chrome.extension.getURL("face"+ Math.floor((Math.random() * 4) + 1)+ ".png");
+   faceImage = chrome.extension.getURL("face"+ Math.floor((Math.random() * 5) + 1)+ ".png");
+   console.log ("stff");
    background.innerHTML += '<img src="' + faceImage + '" class="face" style="position:fixed;height:' + faceHeight * 3 + 'px;width:' + faceWidth * 3 + 'px;z-index:400;left:' + faceX + 'px;top:' + faceY + 'px;">';
 
    if (i + 1 >= faces.length) {
