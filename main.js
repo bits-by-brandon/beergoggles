@@ -201,7 +201,7 @@ function mouseListen(e) {
    mouseScroll = window.scrollY - 90
    gogglesMain.style.left = mouse.x - 300 + "px";
    gogglesMain.style.top = mouse.y - 100 + "px";
-   clipPath.setAttribute("transform", "translate(" + (mouse.x - 290) + "," + (mouse.y + mouseScroll) + ") scale(1.83,1.83)");
+   clipPath.setAttribute("transform", "translate(" + (mouse.x - 290) + "," + (mouse.y - 90) + ") scale(1.83,1.83)");
 }
 
 //esc key cancels most events
