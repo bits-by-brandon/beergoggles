@@ -18,7 +18,7 @@ function loadScreen() { document.body.innerHTML += '<div id="loadback" class="" 
 
    var loadback = document.getElementById('loadback');
    var loadMess = document.getElementById('loadMess');
-   window.setTimeout(fadeIn, 0);
+   window.setTimeout(reload(), 0);
 };
 
 function fadeIn() {
@@ -32,7 +32,7 @@ function fadeIn() {
    loadback.classList.add("loadin");
    window.setTimeout(function(){
       bottleAnim();
-   },500);
+   },400);
 }
 
 function fadeOut() {
@@ -42,7 +42,7 @@ function fadeOut() {
 	   cap.attr('class', '');
 	   bottle_cap.attr('class', '');
 	   bottle.attr('class', '');
-   }, 300);
+   }, 200);
 }
 
 function divInject() {
@@ -58,9 +58,8 @@ function divInject() {
    var visor = document.getElementById('visor');
 };
 
-loadScreen();
-
 divInject();
+loadScreen();
 
 //detects when user starts and stops scrolling.
 window.addEventListener('scroll', function () {
@@ -71,16 +70,19 @@ window.addEventListener('scroll', function () {
       visor.setAttribute("fill", "rgba(0, 0, 0, 0.9)");
       $("#loadMess").removeClass("hide");
       document.getElementById("background").style.display = "none";
-      
    }
+
    messDelay = setTimeout(function () {
       $("#loadMess").addClass("hide");
    }, 400);
+
    loadDelay = setTimeout(function () {
-      fadeIn();
       gogglesMain.style.display = "none";
-      window.setTimeout(reload, 50);
-   }, 700); //change this value to change the delay after user srcolls to start re-scan
+	  console.log ("goggles are hidden")
+      setTimeout(function(){
+         reload();
+	  },20);
+   }, 800); //change this value to change the delay after user srcolls to start re-scan
 }, false);
 
 //sends out a message to background.js that returns the Data URL to the screenshot
@@ -89,12 +91,12 @@ function imgRequest(input) {
    chrome.runtime.sendMessage({
       hail: input
    }, function (response) {
-      //fadeIn();
+      fadeIn();
       window.setTimeout(function () {
          image = response.output; //stores data url in image
          console.log("sendMessage returns " + response.output);
          setImage(image);
-      }, 300);
+      }, 2200);
    });
 };
 
@@ -117,9 +119,6 @@ var bottle_cap = $("#bottle_Cap");
 function bottleAnim() {
     setTimeout(function(){
 		bottle.attr('class', 'active');
-		setTimeout(function(){
-			imgRequest("init");
-		}, 1000);
 	} , 500);
 	cap.attr('class', 'cap_active');
 	bottle_cap.attr('class', 'bottle_cap_active');
@@ -159,10 +158,10 @@ function detectFace() {
 //clears dom and dataurl for new screenshot
 function reload() {
    $('body').addClass('noscroll');
-   overlay.src = " ";
+   overlay.src = "";
    $('.face').remove();
    console.log("overlay.src is now null");
-   imgRequest("refresh");
+   imgRequest("refresh"); //requests new screenshot
 };
 
 
