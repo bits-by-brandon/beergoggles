@@ -11,11 +11,11 @@ var facenum;
 var count;
 var setDetect = true;
 // add required styles
-document.body.innerHTML += '<style>.loadin{opacity:0.95 !important}.noscroll { overflow:none; height: 100%; } .hide{bottom: -50px !important;}</style>'
+document.body.innerHTML += '<style>.loadin{opacity:0.95 !important}.noscroll { overflow:none; height: 100%; } .hide{bottom: -50px !important;} #bottle{ position: absolute; left: 50%; top: 50%; margin-top: -300px; margin-left: -310px; } #Wave_anim{ transition: all 2s ease-in-out; -webkit-transform: translateY(0px); transform: translateY(0px); } use#Wave_Anim{transform: translateY(0px); transition: transform 1.5s ease;} .active{ -webkit-transform: translateY(250px); transform: translateY(250px) !important; } .cap_active{ transform: translate(0,0) rotate(-160deg) !important; } .bottle_cap_active{ transform: rotate(-1200deg) !important; opacity: 0 !important; } #Cap{ transition: all 1s cubic-bezier(0, 0, 0.63, 0.99); transform: translate(0,0) rotate(0); transform-origin: -70px; -webkit-transform: transform: translate(0,0) rotate(0); } #bottle_Cap{ opacity: 1; transition: all 1s linear; transform: rotate(0); transform-origin: center; -webkit-transform: transform: rotate(0); }</style>';
 
 //add div and goggle img to body tag of DOM
-function loadScreen() {
-   document.body.innerHTML += '<div id="loadback" class="" style="position:fixed; width:100vw;height:100vh;left:0px;top:0px;background-color:#fff;opacity:0;z-index:1010;transition:opacity 300ms;"><svg id="bottleSvg" style="position:absolute;top:50%;left:50%;margin-top:-150px;margin-left:-40px;" version="1.1" id="Layer_1" x="0px" y="0px" width="79.837px" height="284.804px" viewBox="0 0 79.837 284.804" enable-background="new 0 0 79.837 284.804" xml:space="preserve"><g><defs><rect id="bottleClip" x="2.402" y="3.294" width="73.719" height="278.329"/></defs><clipPath id="bottle"><use xlink:href="#bottleClip" overflow="visible" -webkit-transition:transform 1s ease-in-out/> </clipPath> <g id="beer_fill" clip-path="url(#bottle)"><linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="39.9185" y1="278.7175" x2="39.9184" y2="6.2151"><stop offset="0" style="stop-color:#CF8A00"/><stop offset="1" style="stop-color:#F0B132"/></linearGradient> <path fill="url(#SVGID_3_)" d="M64.17,106.081l-5.988-6.925c-2.53-3.151-4.105-7.253-4.105-11.339V44.53V22.918V17.24v-5.512V8.414 c0-1.264-0.949-2.199-2.196-2.199H27.952c-1.26,0-2.196,0.951-2.196,2.199v3.314v5.512v5.678V44.53v42.958 c0,4.102-1.576,8.188-4.104,11.339l-5.985,6.924c-5.991,7.253-9.452,16.705-9.452,26.157v13.093v4.27v80.646v18.317v28.284 c0,1.266,0.949,2.2,2.199,2.2h63.008c1.263,0,2.2-0.952,2.2-2.2v-28.284v-18.317v-80.646v-4.27v-12.765 C73.621,122.784,70.156,113.333,64.17,106.081z"/></g></g><g><path d="M33.451,178.58h8.153c2,0,3.686,0.437,5.059,1.311l13.218-10.496H17.894v33.365l15.558-12.369V178.58z"/><path d="M68.963,102.124c-0.03-0.037-0.061-0.073-0.092-0.108l-5.906-6.831c-1.675-2.124-2.674-4.871-2.674-7.369V44.53V22.918 V17.24v-5.512V8.414c0-4.718-3.693-8.414-8.41-8.414H27.953c-4.717,0-8.411,3.696-8.411,8.414v3.314v5.512v5.678V44.53v42.958 c0,2.535-0.973,5.216-2.673,7.37l-5.904,6.83c-0.031,0.035-0.061,0.071-0.09,0.106C3.963,110.161,0,121.137,0,131.908v13.093v4.27 v80.646v18.317v28.285c0,4.718,3.696,8.415,8.413,8.415h63.009c4.719,0,8.415-3.697,8.415-8.415v-28.285v-18.317v-80.646v-4.27 v-12.765C79.837,121.47,75.873,110.495,68.963,102.124z M25.756,11.728V8.414c0-1.248,0.936-2.199,2.196-2.199h23.928 c1.247,0,2.195,0.936,2.195,2.199v3.314v0.701h-28.32V11.728z M73.622,229.917v18.317v28.285c0,1.248-0.938,2.2-2.2,2.2H8.413 c-1.249,0-2.199-0.936-2.199-2.2v-28.285v-18.317v-2.146h67.408V229.917z M15.925,205.572v-38.147h47.986v38.147l-23.994,7.966 L15.925,205.572z M73.622,145.001v4.27v3.901H6.214v-3.901v-4.27v-13.093c0-9.452,3.461-18.903,9.452-26.157l5.985-6.924 c2.528-3.15,4.104-7.237,4.104-11.339V44.53V22.918v-4.275h28.32v4.275V44.53v43.287c0,4.086,1.576,8.188,4.106,11.339l5.988,6.925 c5.986,7.252,9.451,16.704,9.451,26.156V145.001z"/><path d="M41.23,183.077h-2.532v3.094l3.749-2.998c-0.126,0-0.312-0.016-0.562-0.049C41.636,183.093,41.417,183.077,41.23,183.077z"/><path d="M49.57,185.326v0.092c0,2.251-0.749,3.971-2.247,5.155c-1.5,1.188-3.501,1.782-5.999,1.782h-2.626v5.436h-5.247v-4.966 l-14.622,11.62l21.088,7.03l22.026-7.309v-33.929l-13.777,10.964C49.103,182.266,49.57,183.64,49.57,185.326z"/><path d="M44.229,185.609c0-0.5-0.095-0.876-0.281-1.127l-4.686,3.656h1.875C43.198,188.138,44.229,187.294,44.229,185.609z"/></g></svg></div><div id="loadMess" class="hide" style="position:fixed;left:0;width:100%;height:50px;bottom:0px;background-color:#eee;padding:0px;opacity:0.9;z-index:9999;transition:bottom 300ms ease"><h2 style="font-size:15px;font-family:sans-serif;letter-spacing:2px;text-transform:uppercase;color:#434343;text-align:center;line-height:28px">While you scroll, I\'ll drink.</h2></div>'
+function loadScreen() { document.body.innerHTML += '<div id="loadback" class="" style="position:fixed; width:100vw;height:100vh;left:0px;top:0px;background-color:#fff;opacity:0;z-index:1010;transition:opacity 300ms;"><svg id="bottle" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="350px" height="400px" viewBox="-274.582 -160 350 350" enable-background="new -286.582 -166.597 653 701.5" xml:space="preserve"><path id="Glass" opacity="0.4" fill="#EAEAEA" d="M69.75,199.184v-16.728V164.14V83.493v-4.271V66.457 c0.001-9.451-3.465-18.902-9.451-26.154l-5.988-6.925c-2.529-3.151-4.104-7.254-4.104-11.34v-57.802 c0-1.265-0.949-2.199-2.195-2.199h-23.93c-1.261,0-2.196,0.951-2.196,2.199v57.473c0,4.103-1.576,8.188-4.104,11.34l-5.985,6.924 C5.805,47.226,2.344,56.678,2.344,66.13v13.093v4.271v80.646v18.316v16.134c0.026,7.917,6.44,14.328,14.359,14.35h39.952 C63.818,212.31,69.46,206.44,69.75,199.184z"/><g><linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="36.0464" y1="-25.4304" x2="36.0463" y2="212.9402"><stop offset="0" style="stop-color:#CF8A00"/><stop offset="1" style="stop-color:#F0B132"/></linearGradient><path clip-path="url(#Wave_1_)" fill="url(#SVGID_1_)" d="M69.75,199.184v-16.728V164.14V83.493v-4.271V66.457 c0.001-9.451-3.465-18.902-9.451-26.154l-5.988-6.925c-2.529-3.151-4.104-7.254-4.104-11.34v-41.956v-3.313 c0-1.265-0.949-2.199-2.195-2.199h-23.93c-1.261,0-2.196,0.951-2.196,2.199v3.313v41.627c0,4.103-1.576,8.188-4.104,11.34 l-5.985,6.924C5.805,47.226,2.344,56.678,2.344,66.13v13.093v4.271v80.646v18.316v16.134c0.026,7.917,6.44,14.328,14.359,14.35 h39.952C63.818,212.31,69.46,206.44,69.75,199.184z"/><g><defs><path id="Wave" d="M69.75-27.467c-6.743,0-6.743-6.74-13.486-6.74c-6.742,0-6.742,6.74-13.485,6.74 c-6.738,0-6.738-6.74-13.477-6.74c-6.741,0-6.741,6.74-13.481,6.74c-6.738,0-6.738-6.74-13.477-6.74v247.305H69.75V-27.467z"/></defs><clipPath id="Wave_1_"><use id="Wave_Anim" xlink:href="#Wave"  overflow="visible"/></clipPath></g></g><linearGradient id="Shine_1_" gradientUnits="userSpaceOnUse" x1="21.6465" y1="87.4456" x2="69.75" y2="87.4456"><stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0.4"/><stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0.2"/></linearGradient><path id="Shine" fill="url(#Shine_1_)" d="M56.655,212.94c7.163-0.63,12.805-6.5,13.095-13.756v-15.031V66.372 c0.001-9.451-3.465-18.902-9.451-26.154l-5.988-6.925c-2.529-3.151-4.104-7.254-4.104-11.34v-57.802 c0-1.265-0.949-2.199-2.195-2.199h-5.55c0,0,0,47.579,0,59.587c0,19.759-20.814,24.509-20.814,45.5c0,17.509,0,131.5,0,131.5 c0,7.953,6.447,14.4,14.4,14.4h5.496H56.655z"/><g><linearGradient id="Label_1_" gradientUnits="userSpaceOnUse" x1="2.3438" y1="129.6931" x2="69.75" y2="129.6931"><stop  offset="0" style="stop-color:#000000;stop-opacity:0.75"/><stop  offset="1" style="stop-color:#1A1A1A;stop-opacity:0.85"/></linearGradient><rect id="Label" x="2.344" y="92.394" fill="url(#Label_1_)" width="67.406" height="74.599"/><path id="Logo" fill="#D1D1D1" d="M55.475,111.023v30.888l-19.428,6.452l-19.429-6.452v-30.888H55.475z M18.212,139.635 l12.598-10.017v-9.563h6.604c1.619,0,2.994,0.361,4.112,1.062l10.687-8.5h-34V139.635z M53.883,113.3l-11.156,8.88 c0.757,0.866,1.153,1.983,1.153,3.354v0.076c0,1.822-0.608,3.214-1.821,4.174c-1.216,0.963-2.836,1.443-4.857,1.443h-2.125v4.401 H30.81v-4.038l-11.84,9.404l17.077,5.692l17.836-5.92V113.3z M38.097,123.773c-0.103,0-0.256-0.012-0.455-0.038 c-0.203-0.025-0.382-0.038-0.532-0.038h-2.05v2.504L38.097,123.773z M39.311,124.835l-3.795,2.96h1.518 c1.67,0,2.505-0.683,2.505-2.049c0-0.405-0.091-0.693-0.236-0.911H39.311z"/></g><linearGradient id="Cap_1_" gradientUnits="userSpaceOnUse" x1="18.5146" y1="-37.9631" x2="53.5762" y2="-37.9631"><stop  offset="0" style="stop-color:#000000;stop-opacity:0.75"/><stop offset="1" style="stop-color:#1A1A1A;stop-opacity:0.85"/></linearGradient> <g id="Cap"><path id="bottle_Cap" fill="url(#Cap_1_)"d="M46.381-41.561H25.71c-3.974,0-7.195,3.222-7.195,7.195h35.062 C53.576-38.339,50.354-41.561,46.381-41.561z"/></g></svg> </div><div id="loadMess" class="hide" style="position:fixed;left:0;width:100%;height:50px;bottom:0px;background-color:#eee;padding:0px;opacity:0.9;z-index:9999;transition:bottom 300ms ease"><h2 style="font-size:15px;font-family:sans-serif;letter-spacing:2px;text-transform:uppercase;color:#434343;text-align:center;line-height:28px">While you scroll, I\'ll drink.</h2></div>';
+
    var loadback = document.getElementById('loadback');
    var loadMess = document.getElementById('loadMess');
    //window.setTimeout(fadeIn, 0);
@@ -30,13 +30,14 @@ function fadeIn() {
    });
    console.log("lock scroll");
    loadback.classList.add("loadin");
-   bottleClip = document.getElementById("bottleClip");
-   bottleClip.setAttribute("y", 3.294);
 }
 
 function fadeOut() {
    $('body,html').off('scroll touchmove mousewheel');
    loadback.classList.remove("loadin");
+   cap.attr('class', '');
+   bottle_cap.attr('class', '');
+   bottle.attr('class', '');
 }
 
 function divInject() {
@@ -73,7 +74,7 @@ window.addEventListener('scroll', function () {
    loadDelay = setTimeout(function () {
       gogglesMain.style.display = "none";
       window.setTimeout(reload, 50);
-   }, 700);
+   }, 700); //change this value to change the delay after user srcolls to start re-scan
 }, false);
 
 //sends out a message to background.js that returns the Data URL to the screenshot
@@ -103,6 +104,20 @@ function setImage(image) {
    document.getElementById("background").style.display = "block";
 };
 
+//bottle animation
+var bottle = $("#Wave_Anim");
+var cap = $("#Cap");
+var bottle_cap = $("#bottle_Cap");
+
+function bottleAnim() {
+    setTimeout(drink, 500);
+	cap.attr('class', 'cap_active');
+	bottle_cap.attr('class', 'bottle_cap_active');
+}
+function drink(){
+	bottle.attr('class', 'active');
+}
+
 //passes background image into facial detection
 function detectFace() {
    $('#overlay').faceDetection({
@@ -112,9 +127,7 @@ function detectFace() {
             facenum = faces.length
          }
          count = 0;
-         //faceloop();
          for(i = 0; i < facenum; i++){
-            
             var face = faces[i];
             var faceX = face.x;
             var faceY = face.y;
@@ -130,13 +143,8 @@ function detectFace() {
             background.innerHTML += '<img src="'+faceImage+'" class="face" style="position:fixed;height:'+ faceHeight * 3+'px;width:'+ faceWidth * 3+'px;z-index:400;left:' + faceX + 'px;top:'+ faceY +'px;">';
                            
             if(i + 1 == faces.length){
-               $({someValue: 3.5}).animate({someValue: 280}, {
-                   duration: 1200,
-                   step: function() { 
-                       bottleClip.setAttribute("y", this.someValue);
-                   }
-               });
-               window.setTimeout(fadeOut, 1400);
+			   bottleAnim();
+               window.setTimeout(fadeOut, 2000);
             }
          }
       }
@@ -153,35 +161,6 @@ function reload() {
    imgRequest("refresh");
 };
 
-function faceloop() {
-   console.log(faces);
-   setDetect = false;
-   i = count;
-   count++;
-   face = faces[i];
-   var faceX = face.x;
-   var faceY = face.y;
-   var faceHeight = face.height;
-   var faceWidth = face.width;
-   faceX = faceX - faceWidth;
-   faceY = faceY - faceHeight;
-   //creates bottle loading animation
-   /*var bottleLoad = (((i + 1) * 100 / facenum) * 2.8) + 3;
-   console.log(bottleLoad);*/
-   faceImage = chrome.extension.getURL("face"+ Math.floor((Math.random() * 5) + 1)+ ".png");
-   console.log ("stff");
-   background.innerHTML += '<img src="' + faceImage + '" class="face" style="position:fixed;height:' + faceHeight * 3 + 'px;width:' + faceWidth * 3 + 'px;z-index:400;left:' + faceX + 'px;top:' + faceY + 'px;">';
-   
-   if (i + 1 >= faces.length) {
-      window.setTimeout(fadeOut, 800);
-      count = 0;
-      facenum = 0;
-      setDetect = true;
-   } else {
-      //bottleClip.setAttribute("y", bottleLoad);
-      window.requestAnimationFrame(faceloop());
-   }
-};
 
 //hide cursor
 document.body.style.cursor = 'none';
