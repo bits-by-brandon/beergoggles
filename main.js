@@ -142,7 +142,7 @@ function detectFace() {
             faceX = faceX - faceWidth;
             faceY = faceY - faceHeight;
             
-            faceImage = chrome.extension.getURL("face"+ Math.floor((Math.random() * 5) + 1)+ ".png");
+            faceImage = chrome.extension.getURL("face"+ Math.floor((Math.random() * 17) + 1)+ ".png");
             background.innerHTML += '<img src="'+faceImage+'" class="face" style="position:fixed;height:'+ faceHeight * 3+'px;width:'+ faceWidth * 3+'px;z-index:400;left:' + faceX + 'px;top:'+ faceY +'px;">';
                            
             if(i + 1 == faces.length){
